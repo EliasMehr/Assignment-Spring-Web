@@ -88,8 +88,6 @@ public class PersonController {
                 WebMvcLinkBuilder.methodOn(PersonController.class).findPersonById(person.getId())
         ).withSelfRel();
         person.add(selfLink);
-
-
     }
 
 }
