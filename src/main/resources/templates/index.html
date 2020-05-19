@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring boot MVC</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href=".../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet">
+</head>
+<body>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th>Person ID</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Social Status</th>
+        <th>MODIFY</th>
+    </tr>
+    </thead>
+
+    <tr th:each="person : ${persons}">
+        <td th:text="${person.id}">Person ID</td>
+        <td th:text="${person.firstName}">First name</td>
+        <td th:text="${person.lastName}">Last name</td>
+        <td th:text="${person.age}">Age</td>
+        <td th:text="${person.gender}">Gender</td>
+        <td th:text="${person.socialStatus}">< Social Status</td>
+
+        <td>
+            <a class="text-center" th:href="@{'/update/' + ${person.id}}">Update information</a>
+            <br/>
+            <a class="text-center" th:href="@{'/remove/' + ${person.id}}">Remove person</a>
+        </td>
+    </tr>
+</table>
+
+<div class="div-container text-center">
+    <h3 class="text-center">Admin Control panel</h3>
+    <a href="add">Create new user</a>
+</div>
+
+
+</body>
+</html>

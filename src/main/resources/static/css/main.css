@@ -1,0 +1,18 @@
+html {
+    scroll-behavior: smooth;
+}
+
+.updateController {
+    display: flex;
+    justify-content: center;
+}
+
+.formSize {
+    width: 600px;
+    height: 600px;
+}
+
+.div-container {
+    width: 100%;
+    height: 400px;
+}

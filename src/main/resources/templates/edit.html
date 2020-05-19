@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring boot MVC</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href=".../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet">
+</head>
+<body>
+
+<div class="updateController">
+
+    <form class="formSize" action="#" th:action="@{/submit}" th:object="${existingPerson}" method="post">
+        <div class="form-group">
+            <label for="personId">Person Identity</label>
+            <input type="text" class="form-control" id="personId" th:field="*{id}" readonly="readonly">
+            <small class="form-text text-muted">Displaying current id of person to modify</small>
+        </div>
+
+        <div class="form-group">
+            <label for="firstName">First name</label>
+            <input type="text" class="form-control" id="firstName" th:field="*{firstName}">
+        </div>
+
+        <div class="form-group">
+            <label for="lastName">Last name</label>
+            <input type="text" class="form-control" id="lastName" th:field="*{lastName}">
+        </div>
+
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" class="form-control" id="age" th:field="*{age}">
+        </div>
+
+        <div class="form-group">
+            <label for="socialStatus">Social status</label>
+            <input type="text" class="form-control" id="socialStatus" th:field="*{socialStatus}">
+        </div>
+
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <select class="form-control form-control-lg" id="gender" th:field="*{gender}">
+                <option th:value="'MALE'" th:text="Male"></option>
+                <option th:value="'FEMALE'" th:text="Female"></option>
+            </select>
+            <small class="form-text text-muted">I do not recommend changing gender</small>
+
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+
+</body>
+</html>
