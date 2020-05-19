@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -19,12 +20,8 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
-    public List<Person> getAllPersons() throws Exception {
-        try {
-            return personRepository.findAll();
-        } catch (Exception e) {
-            throw new Exception("No persons found in database");
-        }
+    public List<Person> getAllPersons() {
+        return personRepository.findAll();
     }
 
     public void create(Person person) throws Exception {
@@ -66,12 +63,12 @@ public class PersonService {
         }
     }
 
-    public Person findPersonById(UUID personId) throws Exception {
+    public Person findPersonById(UUID personId) {
         Optional<Person> person = personRepository.findById(personId);
 
         if (person.isPresent()) {
             return person.get();
         }
-        throw new Exception("Cannot find user");
+        throw new NoSuchElementException();
     }
 }
