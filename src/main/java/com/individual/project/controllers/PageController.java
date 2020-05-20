@@ -26,7 +26,7 @@ public class PageController {
     }
 
     @GetMapping
-    public String ViewPage(Model model) throws Exception {
+    public String ViewPage(Model model) {
         try {
             List<Person> persons = personService.getAllPersons();
             model.addAttribute("persons", persons);
@@ -59,7 +59,7 @@ public class PageController {
     }
 
     @GetMapping("/remove/{personId}")
-    public String delete(@PathVariable UUID personId) throws Exception {
+    public String delete(@PathVariable UUID personId) {
         try {
             personService.delete(personId);
             return "redirect:/";
@@ -69,7 +69,7 @@ public class PageController {
     }
 
     @GetMapping("/update/{personId}")
-    public String update(@PathVariable UUID personId, Model model) throws Exception {
+    public String update(@PathVariable UUID personId, Model model) {
         try {
             Person person = personService.findPersonById(personId);
             model.addAttribute("existingPerson", person);

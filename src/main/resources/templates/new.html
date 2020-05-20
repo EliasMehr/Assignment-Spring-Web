@@ -19,22 +19,22 @@
 
         <div class="form-group">
             <label for="firstName">First name</label>
-            <input type="text" class="form-control" id="firstName" th:field="*{firstName}">
+            <input type="text" class="form-control" id="firstName" th:field="*{firstName}" required="required" minlength="2">
         </div>
 
         <div class="form-group">
             <label for="lastName">Last name</label>
-            <input type="text" class="form-control" id="lastName" th:field="*{lastName}">
+            <input type="text" class="form-control" id="lastName" th:field="*{lastName}" required="required" minlength="2">
         </div>
 
         <div class="form-group">
             <label for="age">Age</label>
-            <input type="number" class="form-control" id="age" th:field="*{age}">
+            <input type="number" class="form-control" id="age" th:field="*{age}" required="required" min="0">
         </div>
 
         <div class="form-group">
             <label for="socialStatus">Social status</label>
-            <input type="text" class="form-control" id="socialStatus" th:field="*{socialStatus}">
+            <input type="text" class="form-control" id="socialStatus" th:field="*{socialStatus}" required="required">
         </div>
 
         <div class="form-group">
