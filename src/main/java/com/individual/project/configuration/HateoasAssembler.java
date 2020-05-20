@@ -27,7 +27,7 @@ public class HateoasAssembler  {
                 .withRel("delete");
         person.add(deleteLink);
 
-        Link createLink = linkTo(methodOn(PersonController.class).create(person)).withRel("create");
+        Link createLink = linkTo(methodOn(PersonController.class).create(new Person())).withRel("create");
         person.add(createLink);
 
         Link updateLink = linkTo(methodOn(PersonController.class).update(person.getId(), person)).withRel("update");

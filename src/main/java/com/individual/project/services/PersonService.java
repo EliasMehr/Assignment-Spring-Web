@@ -4,7 +4,6 @@ import com.individual.project.models.Person;
 import com.individual.project.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -24,12 +23,11 @@ public class PersonService {
         return personRepository.findAll();
     }
 
-    public Person create(Person person) throws Exception {
-
-        if (person != null) {
-            return personRepository.save(person);
-        } else {
-            throw new Exception("Could not create a new person");
+    public void create(Person person) throws Exception {
+        try {
+            personRepository.save(person);
+        } catch (Exception e) {
+            e.getMessage();
         }
     }
 
@@ -47,10 +45,10 @@ public class PersonService {
                 Person updatedPerson = existingPerson.get();
                 personRepository.save(updatedPerson);
             } catch (Exception e) {
-                throw new Exception("Could not save current person " + e.getMessage());
+                throw new Exception();
             }
         } else {
-            throw new Exception("Could not find any person by that id");
+            throw new Exception();
         }
     }
 
@@ -58,7 +56,7 @@ public class PersonService {
         try {
             personRepository.deleteById(personId);
         } catch (Exception e) {
-            throw new Exception("Could not delete person with this id: " + personId);
+            throw new Exception();
         }
     }
 

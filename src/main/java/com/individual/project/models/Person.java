@@ -3,9 +3,12 @@ package com.individual.project.models;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.RepresentationModel;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
@@ -18,7 +21,7 @@ import static javax.persistence.EnumType.STRING;
 @Setter
 @NoArgsConstructor
 @Entity
-public class Person extends EntityModel<Person> {
+public class Person extends RepresentationModel<Person> {
 
     @Id
     @GeneratedValue

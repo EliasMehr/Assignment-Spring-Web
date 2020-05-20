@@ -6,8 +6,10 @@ app:
     pool-size: 30
 
 spring:
+
   datasource:
     initialization-mode: always
+
   jpa:
     hibernate:
       ddl-auto: update
