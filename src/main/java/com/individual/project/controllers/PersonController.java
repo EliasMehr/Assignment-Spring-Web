@@ -1,9 +1,9 @@
 package com.individual.project.controllers;
 
+import com.individual.project.configuration.HateoasAssembler;
 import com.individual.project.models.Person;
 import com.individual.project.services.PersonService;
-import org.springframework.hateoas.Link;
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,17 +19,20 @@ import java.util.UUID;
 @RequestMapping("/")
 public class PersonController {
 
-    PersonService personService;
+    private PersonService personService;
+    private HateoasAssembler hateoasAssembler;
 
-    public PersonController(PersonService personService) {
+    @Autowired
+    public PersonController(PersonService personService, HateoasAssembler hateoasAssembler) {
         this.personService = personService;
+        this.hateoasAssembler = hateoasAssembler;
     }
 
     @GetMapping("persons")
     public ResponseEntity<List<Person>> findAllPersons() {
 
         List<Person> allPersons = personService.getAllPersons();
-        allPersons.forEach(this::addHATEOASLink);
+        allPersons.forEach(hateoasAssembler::addHATEOASLink);
         return ResponseEntity.ok(allPersons);
     }
 
@@ -37,7 +40,7 @@ public class PersonController {
     public ResponseEntity<Person> findPersonById(@PathVariable UUID id) {
         try {
             Person personById = personService.findPersonById(id);
-            addHATEOASLink(personById);
+            hateoasAssembler.addHATEOASLink(personById);
             return ResponseEntity.ok(personById);
         } catch (NoSuchElementException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
@@ -46,13 +49,14 @@ public class PersonController {
 
     @Transactional
     @PostMapping("persons")
-    public ResponseEntity<String> create(@Valid @RequestBody Person person) {
+    public ResponseEntity<Person> create(@Valid @RequestBody Person person) {
         try {
-            personService.create(person);
+            Person personLink = personService.create(person);
+            hateoasAssembler.addHATEOASLink(personLink);
+            return ResponseEntity.ok(personLink);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
-        return ResponseEntity.ok("Created person successfully");
     }
 
 
@@ -78,16 +82,5 @@ public class PersonController {
         return ResponseEntity.ok("Deleted person with id: " + personId + " successfully");
     }
 
-    private void addHATEOASLink(Person person) {
-
-        Link findAllLink = WebMvcLinkBuilder.linkTo(
-                WebMvcLinkBuilder.methodOn(PersonController.class).findAllPersons()).withRel("findAll");
-        person.add(findAllLink);
-
-        Link selfLink = WebMvcLinkBuilder.linkTo(
-                WebMvcLinkBuilder.methodOn(PersonController.class).findPersonById(person.getId())
-        ).withSelfRel();
-        person.add(selfLink);
-    }
 
 }

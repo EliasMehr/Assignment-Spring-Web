@@ -24,10 +24,10 @@ public class PersonService {
         return personRepository.findAll();
     }
 
-    public void create(Person person) throws Exception {
+    public Person create(Person person) throws Exception {
 
         if (person != null) {
-            personRepository.save(person);
+            return personRepository.save(person);
         } else {
             throw new Exception("Could not create a new person");
         }
@@ -37,7 +37,6 @@ public class PersonService {
         Optional<Person> existingPerson = personRepository.findById(personId);
 
         if (existingPerson.isPresent()) {
-
             existingPerson.get().setFirstName(person.getFirstName());
             existingPerson.get().setLastName(person.getLastName());
             existingPerson.get().setAge(person.getAge());
@@ -64,11 +63,7 @@ public class PersonService {
     }
 
     public Person findPersonById(UUID personId) {
-        Optional<Person> person = personRepository.findById(personId);
-
-        if (person.isPresent()) {
-            return person.get();
-        }
-        throw new NoSuchElementException();
+        return personRepository.findById(personId)
+                .orElseThrow(NoSuchElementException::new);
     }
 }
