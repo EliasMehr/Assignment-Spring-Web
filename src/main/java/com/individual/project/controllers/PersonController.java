@@ -11,13 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import javax.validation.ValidationException;
 import java.util.*;
-
-import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @RequestMapping("/")
