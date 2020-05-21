@@ -33,7 +33,7 @@ public class PersonController {
     public ResponseEntity<List<Person>> findAllPersons() {
 
         List<Person> allPersons = personService.getAllPersons();
-        allPersons.forEach(hateoasAssembler::addHATEOASLink);
+        allPersons.forEach(hateoasAssembler::addHATEOASLinks);
         return ResponseEntity.ok(allPersons);
     }
 
@@ -41,7 +41,7 @@ public class PersonController {
     public ResponseEntity<Person> findPersonById(@PathVariable UUID id) {
         try {
             Person personById = personService.findPersonById(id);
-            hateoasAssembler.addHATEOASLink(personById);
+            hateoasAssembler.addHATEOASLinks(personById);
             return ResponseEntity.ok(personById);
         } catch (NoSuchElementException e) {
             throw new APIRequestException("No such person found");
@@ -53,7 +53,7 @@ public class PersonController {
     public ResponseEntity<Person> create(@Valid @RequestBody Person person) {
         try {
             personService.create(person);
-            hateoasAssembler.addHATEOASLink(person);
+            hateoasAssembler.addHATEOASLinks(person);
             return ResponseEntity.ok(person);
         } catch (Exception e) {
             throw new ValidationException(e.getMessage());

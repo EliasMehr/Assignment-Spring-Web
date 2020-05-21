@@ -12,7 +12,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class HateoasAssembler  {
 
 
-    public void addHATEOASLink(Person person) {
+    public void addHATEOASLinks(Person person) {
 
         Link findAllLink = linkTo(
                 methodOn(PersonController.class).findAllPersons()).withRel("findAll");

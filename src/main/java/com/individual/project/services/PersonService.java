@@ -23,7 +23,7 @@ public class PersonService {
         return personRepository.findAll();
     }
 
-    public void create(Person person) throws Exception {
+    public void create(Person person) {
         try {
             personRepository.save(person);
         } catch (Exception e) {

@@ -1,5 +1,8 @@
 package com.individual.project.models;
 
+import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,10 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.UUID;
 
 import static javax.persistence.EnumType.STRING;
@@ -44,9 +44,11 @@ public class Person extends RepresentationModel<Person> {
     private String socialStatus;
 
     @Enumerated(STRING)
+    @NotNull(message = "Gender must be FEMALE or MALE")
     private Gender gender;
 
     public enum Gender {
-        MALE, FEMALE
+        MALE,
+        FEMALE
     }
 }
