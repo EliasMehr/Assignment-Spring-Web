@@ -1,6 +1,6 @@
 package com.individual.project.controllers;
 
-import com.individual.project.models.Person;
+import com.individual.project.domain.Person;
 import com.individual.project.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -9,10 +9,13 @@ spring:
 
   datasource:
     initialization-mode: always
+    # schema: schema.sql
+
 
   jpa:
     hibernate:
-      ddl-auto: update
+     ddl-auto: update
+
 
     properties:
       hibernate:

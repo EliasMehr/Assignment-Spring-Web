@@ -2,7 +2,7 @@ package com.individual.project.controllers;
 
 import com.individual.project.Exception.APIRequestException;
 import com.individual.project.configuration.HateoasAssembler;
-import com.individual.project.models.Person;
+import com.individual.project.domain.Person;
 import com.individual.project.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,7 +48,6 @@ public class PersonController {
         }
     }
 
-    @Transactional
     @PostMapping("persons")
     public ResponseEntity<Person> create(@Valid @RequestBody Person person) {
         try {
@@ -60,7 +59,6 @@ public class PersonController {
         }
     }
 
-    @Transactional
     @PutMapping("persons/{personId}")
     public ResponseEntity<String> update(@PathVariable UUID personId, @RequestBody Person person) {
         try {
@@ -71,7 +69,6 @@ public class PersonController {
         return ResponseEntity.ok("Successfully updated person with id: " + personId);
     }
 
-    @Transactional
     @DeleteMapping("persons/{personId}")
     public ResponseEntity<String> delete(@PathVariable UUID personId) {
         try {

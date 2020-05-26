@@ -1,9 +1,11 @@
 package com.individual.project.services;
 
-import com.individual.project.models.Person;
+import com.individual.project.domain.Person;
 import com.individual.project.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -23,6 +25,7 @@ public class PersonService {
         return personRepository.findAll();
     }
 
+    @Transactional
     public void create(Person person) {
         try {
             personRepository.save(person);
@@ -31,6 +34,7 @@ public class PersonService {
         }
     }
 
+    @Transactional
     public void update(UUID personId, Person person) throws Exception {
         Optional<Person> existingPerson = personRepository.findById(personId);
 
@@ -52,6 +56,7 @@ public class PersonService {
         }
     }
 
+    @Transactional
     public void delete(UUID personId) throws Exception {
         try {
             personRepository.deleteById(personId);

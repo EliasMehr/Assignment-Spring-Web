@@ -1,7 +1,7 @@
 package com.individual.project.configuration;
 
 import com.individual.project.controllers.PersonController;
-import com.individual.project.models.Person;
+import com.individual.project.domain.Person;
 import org.springframework.hateoas.Link;
 import org.springframework.stereotype.Component;
 

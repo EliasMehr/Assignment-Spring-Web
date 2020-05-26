@@ -1,6 +1,6 @@
 package com.individual.project.repositories;
 
-import com.individual.project.models.Person;
+import com.individual.project.domain.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
